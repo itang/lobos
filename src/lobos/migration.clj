@@ -39,7 +39,7 @@
 
 (def ^{:dynamic true} *migrations-table* :lobos_migrations)
 
-(def ^{:dynamic true} *reload-migrations* true)
+(def ^{:dynamic true} *reload-migrations* false)
 
 ;; -----------------------------------------------------------------------------
 
@@ -239,7 +239,7 @@
 
 (defn do-migrations [db-spec sname with names & [silent]]
   (let [filter-migs #(only % (list-migrations-names))
-        migrations (->> names
+        migrations @migrations #_(->> names
                         (map str)
                         filter-migs
                         (when->> (= with :down) reverse)
