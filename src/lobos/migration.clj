@@ -239,7 +239,9 @@
 
 (defn do-migrations [db-spec sname with names & [silent]]
   (let [filter-migs #(only % (list-migrations-names))
-        migrations @migrations #_(->> names
+        names (->> names (map str) filter-migs)
+        migrations (filter #(some #{(-> % meta :name name)} names) @migrations)
+        #_(->> names
                         (map str)
                         filter-migs
                         (when->> (= with :down) reverse)
