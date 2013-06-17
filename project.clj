@@ -1,4 +1,4 @@
-(defproject lobos "1.0.0-beta1"
+(defproject me.itang/lobos "1.0.0-beta1"
   :description
   "A library to create and manipulate SQL database schemas."
   :url "http://budu.github.com/lobos/"
